@@ -14,7 +14,7 @@
                             </td>
                             
                             <td>
-                                Data de entrega: <%= @order.delivery_date.strftime("%B %d, %Y")  %>
+                                Data de entrega: <%= I18n.l(@order.delivery_date, format: :long)  %>
                             </td>
                         </tr>
                     </table>
@@ -27,7 +27,8 @@
                         <tr>
                             
                             <td>
-                                <%= @order.client.name %><br>
+                                <%#= @order.client.name %><br>
+                                <%= Client.find(@order.client_id).name unless @order.client_id.nil? %><%= @order.client_name unless @order.client_name.nil? %>
                                 <!--John Doe<br>-->
                                 <!--john@example.com-->
                             </td>

@@ -84,7 +84,7 @@
         <td><%= order.length %></td>
         <td><%= order.height %></td>
         <td><%= order.cost %></td>
-        <td><%= order.status %></td>
+        <td><%= I18n.t(order.status.to_sym) %></td>
         <td><%= image_tag(order.products.frame.first.image.url, height: 20, width: 20) if order.products.frame.first.image.present? %></td>
         <td><%= link_to "Detalhes", order_path(order), class:"btn btn-primary btn-sm" %></td>
         

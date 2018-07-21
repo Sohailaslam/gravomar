@@ -22,8 +22,41 @@
                 <td><%= @order.notes %></td>
               </tr>
               <tr>
+                <th>Data de entrega:</th>
+                <td><%= @order.delivery_date.strftime("%d/%m/%Y") %> </td>
+              </tr>
+              <tr>
+                <th>Molduras:</th>
+                <td>&euro; <%= @order.frame_cost %> </td>
+              </tr>
+              <tr>
+                <th>Passe Partout:</th>
+                <td>&euro; <%= @order.passe_partout_cost %> </td>
+              </tr>
+              <tr>
+                <th>Acessórios:</th>
+                <td>&euro; <%= @order.accessory_cost %> </td>
+              </tr>
+              <tr>
+                <th>Outros:</th>
+                <td>&euro; <%= @order.others.nil? ? 0 : @order.others.round(2) %> </td>
+              </tr>
+              <tr>
                 <th>Custo total</th>
                 <td>&euro; <%= @order.cost %></td>
+              </tr>
+              <tr>
+                <th>Desconto:</th>
+                <td> <%= @order.discount %>% (&euro; <%= @discount %>)</td>
+              </tr>
+              
+              <tr>
+                <th>Sinal:</th>
+                <td><%= @order.advance %>% (&euro; <%= ((@order.advance * @order.cost)/100).round(2) %>)</td>
+              </tr>
+              <tr>
+                <th>Remanescente:</th>
+                <td>&euro; <%= (@order.cost - ((@order.advance * @order.cost)/100)).round(2) %></td>
               </tr>
               <tr>
               <th>Data de criação</th>
@@ -85,7 +118,7 @@
         <br>
         <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <!--<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>-->
         </div>
         
       </div>
