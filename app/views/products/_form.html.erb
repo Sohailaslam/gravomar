@@ -15,7 +15,7 @@
       <%= form.text_field :product_code, id: :product_code, class:"form-control form-control-md", required: true, :aria => {:label => 'Identificador', :describedby => "Identificador" }%>
     </div>
   
-    <%= form.select :kind, options_for_select([ ["Moldura","frame"], ["Passe-partout","passe_partout"], ["Acessório","accessory"]]), {prompt: 'Tipo*'}, {required: true} %>
+    <%= form.select :kind, options_for_select([ ["Moldura","frame"], ["Passe-partout","passe_partout"], ["Acessório","accessory"]],@product.kind), {prompt: 'Tipo*'}, {required: true} %>
   <div class="input-group input-group-sm mb-3">
         <span class="input-group-addon" id="Fornecedor">Fornecedor*</span>
       <%= form.text_field :seller, class:"form-control form-control-md", required: true, :aria => {:label => 'Fornecedor', :describedby => "Fornecedor" }%>
@@ -38,7 +38,7 @@
     </div>
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-addon" id="Preço">Preço (cm)*</span>
-       <%= form.number_field :price, id: :product_price, class:"form-control form-control-md", required: true, :aria => {:label => 'Preço', :describedby => "Preço" }%>
+       <%= form.number_field :price, id: :product_price,:step => 0.001, class:"form-control form-control-md", required: true, :aria => {:label => 'Preço', :describedby => "Preço" }%>
     </div>
     <div class="input-group input-group-sm mb-3">
         <span class="input-group-addon" id="Stock">Quantidade em Stock*</span>

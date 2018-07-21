@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20180718093141) do
     t.string "color"
     t.integer "height"
     t.integer "width"
-    t.integer "price"
+    t.float "price"
     t.text "notes"
     t.string "frame"
     t.string "passe_partout"
