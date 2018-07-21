@@ -1,0 +1,71 @@
+<div class="form-select">
+<%= form_with(model: product, local: true) do |form| %>
+  <% if product.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% product.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Identificador">Identificador (ref)*</span>
+      <%= form.text_field :product_code, id: :product_code, class:"form-control form-control-md", required: true, :aria => {:label => 'Identificador', :describedby => "Identificador" }%>
+    </div>
+  
+    <%= form.select :kind, options_for_select([ ["Moldura","frame"], ["Passe-partout","passe_partout"], ["Acessório","accessory"]]), {prompt: 'Tipo*'}, {required: true} %>
+  <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Fornecedor">Fornecedor*</span>
+      <%= form.text_field :seller, class:"form-control form-control-md", required: true, :aria => {:label => 'Fornecedor', :describedby => "Fornecedor" }%>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Custo">Custo (cm)*</span>
+       <%= form.number_field :cost, id: :product_cost, class:"form-control form-control-md", required: true, :aria => {:label => 'Custo', :describedby => "Custo" }%>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Côr">Côr*</span>
+       <%= form.text_field :color, id: :product_color, class:"form-control form-control-md", required: true, :aria => {:label => 'Côr', :describedby => "Côr" }%>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Altura">Altura (cm)*</span>
+       <%= form.number_field :height, id: :product_height, class:"form-control form-control-md", required: true, :aria => {:label => 'Altura', :describedby => "Altura" }%>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Largura">Largura (cm)*</span>
+       <%= form.number_field :width, id: :product_width, class:"form-control form-control-md", required: true, :aria => {:label => 'Largura', :describedby => "Largura" }%>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Preço">Preço (cm)*</span>
+       <%= form.number_field :price, id: :product_price, class:"form-control form-control-md", required: true, :aria => {:label => 'Preço', :describedby => "Preço" }%>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Stock">Quantidade em Stock*</span>
+       <%= form.number_field :stock, id: :product_stock, class:"form-control form-control-md", required: true, :aria => {:label => 'Stock', :describedby => "Stock" }%>
+    </div>
+  
+    <div class="mb-3"><div class="h6"><%= form.label "Fotografia" %></div>
+    
+    
+    <div class="input-file-container">  
+    <%= form.file_field :image, id: :product_image, class:"input-file", :data => { :buttonText => 'bar' } %>
+    <label tabindex="0" for="product_image" class="input-file-trigger">Anexar Imagem         ...</label>
+  </div>
+  <span class="file-return">Nenhum ficheiro escolhido</span>
+    
+    
+    
+    
+    
+    </div>
+  <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Notas">Notas</span>
+       <%= form.text_area :notes, id: :product_notes, class:"form-control form-control-md", :aria => {:label => 'Notas', :describedby => "Notas" }%>
+    </div>
+
+  <div class="actions">
+    <%= form.submit "Adicionar artigo", class: "login loginmodal-button loginmodal-submit" %>
+  </div>
+<% end %>
+</div>

@@ -1,0 +1,122 @@
+<%= wicked_pdf_stylesheet_link_tag "invoice" %>
+<div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <!--<img src="https://www.sparksuite.com/images/logo.png" style="width:100%; max-width:300px;">-->
+                                <%= wicked_pdf_image_tag 'g-logo.png' %>
+                                <!--<img src="/g-logo.png" style="width:100%; max-width:300px;">-->
+                                <!--<img  src="/g-logo.png" >-->
+                                
+                            </td>
+                            
+                            <td>
+                                Data de entrega: <%= @order.delivery_date.strftime("%B %d, %Y")  %>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            
+                            <td>
+                                <%= @order.client.name %><br>
+                                <!--John Doe<br>-->
+                                <!--john@example.com-->
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            
+            
+            <tr class="heading">
+                <td>
+                    Item
+                </td>
+                
+                <td>
+                    Custo
+                </td>
+            </tr>
+            
+            <tr class="item">
+                <td>
+                    Molduras
+                </td>
+                
+                <td>
+                    €<%= @order.frame_cost %>
+                </td>
+            </tr>
+            
+            <tr class="item">
+                <td>
+                    Passe Partout
+                </td>
+                
+                <td>
+                    €<%= @order.passe_partout_cost %>
+                </td>
+            </tr>
+            
+            <tr class="item last">
+                <td>
+                    Acessórios
+                </td>
+                
+                <td>
+                     €<%= @order.accessory_cost %>
+                </td>
+            </tr>
+            
+            <tr class="item last">
+                <td>
+                    Outros
+                </td>
+                
+                <td>
+                     €<%= @order.others %>
+                </td>
+            </tr>
+            
+            <tr class="item last">
+                <td>
+                    Desconto
+                </td>
+                
+                <td>
+                     €<%= @order.discount_amount %>
+                </td>
+            </tr>
+            
+            <tr class="item last">
+                <td>
+                    IVA
+                </td>
+                
+                <td>
+                     €<%= @order.tax_cost.round(1) %>
+                </td>
+            </tr>
+            
+            <tr class="total">
+                <td></td>
+                
+                <td>
+                   Total: €<%=@order.cost %>
+                </td>
+            </tr>
+        </table>
+        <footer>
+            <center><%= current_user.notes %>
+        </footer>
+    </div>

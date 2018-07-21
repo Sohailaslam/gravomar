@@ -1,0 +1,21 @@
+<footer id="footer" class="color color-primary">
+    <div class="footer-copyright">
+    	<div class="container-fluid">
+    		<div class="row">
+    			<div class="col-lg-10">
+    				<p>Gravomar © Copyright 2018</p>
+    			</div>
+    			<div class="col-lg-2 text-right" id= "clockbox">
+    			
+    			</div>
+    		</div>
+    	</div>
+    </div>
+</footer>
+<script>
+	$(document).ready(function () {
+	    if ($(window).width() < 640) {
+	        $('#clockbox').remove();
+	    }
+	});
+</script>

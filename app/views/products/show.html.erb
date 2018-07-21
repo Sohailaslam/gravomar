@@ -1,0 +1,59 @@
+
+<div class="container-fluid py-3">
+  <div class="row">
+  	<div class="loginmodal-container">
+  		<div class="loginmodal-container-2">
+  		  <h1>Artigo</h1>
+        
+        <div class="table-responsive">
+          <table class="table table-bordered bg-white">
+            <tbody>
+              <tr>
+                <th>Identificador</th>
+                <td><%= @product.product_code %></td>
+              </tr>
+              <tr>
+                <th>Tipo</th>
+                <td><%= I18n.t(@product.kind.to_sym) %></td>
+              </tr>
+              <tr>
+                <th>Custo (cm)</th>
+                <td><%= @product.cost %></td>
+              </tr>
+              <tr>
+                <th>Côr</th>
+                <td><%= @product.color %></td>
+              </tr>
+              <tr>
+                <th>Altura (cm)</th>
+                <td><%= @product.height %></td>
+              </tr>
+              <tr>
+                <th>Largura (cm)</th>
+                <td><%= @product.width %></td>
+              </tr>
+              <tr>
+                <th>Preço (cm)</th>
+                <td>&euro; <%= @product.price %></td>
+              </tr>
+              <tr>
+                <th>Quantidade em stock</th>
+                <td><%= @product.stock %></td>
+              </tr>
+              <tr>
+                <th>Notas</th>
+                <td><%= @product.notes %></td>
+              </tr>
+            </tbody>
+          
+          </table>
+        </div>
+
+        <center>
+        <%= link_to 'Editar', edit_product_path(@product), class:"btn btn-primary btn-sm" %>
+        <%= link_to 'Voltar', products_path, class:"btn btn-primary btn-sm" %>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>  

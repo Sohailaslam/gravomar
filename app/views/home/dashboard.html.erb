@@ -1,0 +1,117 @@
+<div class="container py-4">
+          
+  <div class="row">
+      <div class="col-md-9">
+          <h2>Dashboard</h2>
+      </div>
+      <div class="col-md-3">
+          <%= link_to "Place Novo Order", new_order_path, class:"btn btn-primary text-right" %>
+      </div>
+  </div>
+  
+  <section class="blocks">
+      <div class="row mb-4">
+         <div class="col-6 col-sm-3">
+          <a href="/users">
+          <div class="card">
+              <div class="card-body">
+                  <center>
+                       <h5>Clients</h5>
+                          <h2 class="mb-0"><%= User.where(admin: false).count %></h2>
+                  </center>
+              </div>
+          </div>
+          </a>
+      </div>
+      <div class="col-6 col-sm-3">
+        <a href="/products">
+          <div class="card">
+              <div class="card-body">
+                  <center>
+                       <h5>Products</h5>
+                          <h2 class="mb-0"><%= Product.count %></h2>
+                  </center>
+              </div>
+          </div>
+        </a>  
+      </div>
+      <div class="col-6 col-sm-3">
+        <a href="/orders">
+          <div class="card">
+              <div class="card-body">
+                  <center>
+                       <h5>Orders</h5>
+                          <h2 class="mb-0"><%= Order.count %></h2>
+                  </center>
+              </div>
+          </div>
+        </a>  
+      </div>
+          
+     </div>
+  </section>
+  
+  <div class="row mb-4">
+      <div class="col-md-12">
+          <h2 class="mb-0 bg-white text-center py-2">Stock</h2>
+      </div>
+  </div>
+  
+  <h4>Frames</h4>
+  <div class="table-responsive">
+      <table class="table table-bordered bg-white">
+        <thead>
+            <th>Name</th>
+            <th>Stock</th>
+        </thead>
+        <% Product.frame.each do |fr| %>
+        <tbody>
+          <tr>
+            <td><%= fr.product_code %></td>
+          </tr>
+          <tr>
+            <td><%= fr.stock %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+    <h4>Passe Partout</h4>
+    <div class="table-responsive">
+      <table class="table table-bordered bg-white">
+        <thead>
+            <th>Name</th>
+            <th>Stock</th>
+        </thead>
+        <% Product.passe_partout.each do |fr| %>
+        <tbody>
+          <tr>
+            <td><%= fr.product_code %></td>
+          </tr>
+          <tr>
+            <td><%= fr.stock %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+    <h4>Accessories</h4>
+    <div class="table-responsive">
+      <table class="table table-bordered bg-white">
+        <thead>
+            <th>Name</th>
+            <th>Stock</th>
+        </thead>
+        <% Product.accessory.each do |fr| %>
+        <tbody>
+          <tr>
+            <td><%= fr.product_code %></td>
+          </tr>
+          <tr>
+            <td><%= fr.stock %></td>
+          </tr>
+        </tbody>
+        <% end %>
+      </table>
+    </div>
+</div>  

@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  phone: MyString
+  material: MyString
+  delivery_date: 2018-07-17
+  quantity: 
+  cost: 1.5
+  description: MyText
+
+two:
+  name: MyString
+  phone: MyString
+  material: MyString
+  delivery_date: 2018-07-17
+  quantity: 
+  cost: 1.5
+  description: MyText

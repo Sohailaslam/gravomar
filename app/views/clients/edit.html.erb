@@ -1,0 +1,95 @@
+<div class="container-fluid py-3">
+  <div class="row">
+  	  <div class="loginmodal-container">
+  		<div class="loginmodal-container-2 form-select form-select-dob">
+  				<h1>Ficha de cliente</h1>
+                <%= form_for @user do |f| %>
+              <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="Nome">Nome*</span>
+             <%= f.text_field :name, class:"form-control form-control-md", required: true, :aria => {:label => 'Nome', :describedby => "Nome" }%>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="Telefone">Telefone*</span>
+             <%= f.text_field :phone_number, class:"form-control form-control-md", required: true, :aria => {:label => 'Telefone', :describedby => "Telefone" }%>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="2Telefone">2º Telefone</span>
+             <%= f.text_field :phone_number2, class:"form-control form-control-md", :aria => {:label => '2Telefone', :describedby => "2Telefone" }%>
+          </div>
+              <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="dob">Data de nascimento</span>
+             <%= f.text_field :dob, class:"form-control form-control-md", required: true, id:"datepicker", :aria => {:label => 'dob', :describedby => "dob" }%>
+          </div>
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="Email">Email*</span>
+             <%= f.email_field :email, class:"form-control form-control-md", required: true, :aria => {:label => 'Email', :describedby => "Email" }%>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="NIF">NIF*</span>
+             <%= f.number_field :vat, class:"form-control form-control-md", required: true, :aria => {:label => 'NIF', :describedby => "NIF" }%>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="Notas">Notas</span>
+             <%= f.text_area :notes, class:"form-control form-control-md", :aria => {:label => 'Notas', :describedby => "Notas" }%>
+            </div>
+              <%= f.submit "Actualizar", class: "login loginmodal-button loginmodal-submit" %>
+      			<% end %>
+  				  <center>
+  				    <a href="/" class="btn btn-link">Voltar para o Dashboard</a>
+  				  <center>  
+  				</div>
+  			</div>	
+  		</div> 
+  </div>
+</div>
+
+<div class="table-responsive" id="table-order">
+  <center><h2>Histórico de encomendas</h2></center>
+<div class="row form-select">
+  <div class="col-lg-2 offset-lg-5">
+    <%= form_tag(edit_client_path, method: :get) do %>
+  <%#= select_tag "term", options_for_select([["A decorrer", "ongoing"],["Terminadas", "complete"],["Simulaçoes", "stimulation"]]) %>
+  <%= select_tag "term", options_for_select([["A decorrer", 1],["Terminadas", 2]],selected: params[:term]) %>
+  <%#= params[:min_date] %>
+  <%= text_field_tag "min_date",params[:min_date].to_s,{class:"form-control form-control-sm mb-2", placeholder:"Deste", id: "datepicker"} %>
+  <%= text_field_tag "max_date",params[:max_date],{class:"form-control form-control-sm mb-2", placeholder:"Até", id: "datepicker2"} %>
+    
+    <%= submit_tag 'Filtro', class:"btn btn-primary" %>
+<% end %>
+  </div>
+</div>
+<table class="table table-bordered bg-white">
+  <h3><%= "Trabalhos a decorrer" if (params[:term] == "ongoing") %>
+      <%= "Trabalhos completos" if (params[:term] == "complete") %>
+      <%= "Trabalhos estimulação" if (params[:term] == "stimulation") %>
+  </h3>
+  <thead>
+    <tr>
+      <th>Data de criação</th>
+      <th>Data de entrega</th>
+      <th>Comprimento</th>
+      <th>Altura</th>
+      <th>Custo total</th>
+      <th>Estado</th>
+      <th>Preview</th>
+      <th>Detalhes</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= order.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= order.delivery_date.strftime("%d/%m/%Y") %></td>
+        <td><%= order.length %></td>
+        <td><%= order.height %></td>
+        <td><%= order.cost %></td>
+        <td><%= order.status %></td>
+        <td><%= image_tag(order.products.frame.first.image.url, height: 20, width: 20) if order.products.frame.first.image.present? %></td>
+        <td><%= link_to "Detalhes", order_path(order), class:"btn btn-primary btn-sm" %></td>
+        
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

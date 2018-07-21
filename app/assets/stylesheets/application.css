@@ -12,8 +12,125 @@
  *
  *= require_tree .
  *= require_self
+ *= require toastr
  */
- 
- body {
-     margin-top: 69px;
+ .form-select-dob select{
+  width:32% !important;
+  display: inline-block !important;
  }
+ .alert{
+ margin-bottom: 0 !important;
+}
+#notice{
+ margin-bottom: 0 !important;
+}
+.blocks a{
+    text-decoration: none !important;
+}
+.blocks .card:hover{
+    background: #a53692 !important;
+}
+.blocks .card h4,.blocks .card h3{
+margin-bottom: 0 !important;
+margin-top: 10px;
+text-transform: uppercase;
+}
+.blocks .card:hover h4,.blocks .card:hover h3{
+    color: #fff !important;
+    
+}
+.theme-selector{
+    display:none !important;
+}
+
+select.select-client,select.select-frame,select.select-passe,select.select-accessory{
+    display:none !important;
+}
+thead{
+background: #a53692 !important;
+    color: #fff !important;}
+.icon-color {
+        color: #a53692;
+    }
+.card-body i{
+    color: #a53692 !important;
+}
+.card:hover i{
+    color: #fff !important;
+}
+.footer-modal {
+    padding: 10px;
+    border-top: 1px solid lightgray;
+}
+#footer{
+    z-index: 9999 !important;
+}
+@media (min-width:768px){
+.input-group-addon {
+    min-width: 130px;
+}}
+
+.input-file-container {
+display: inline-block !important;
+  position: relative;
+  width: 180px;
+} 
+.js .input-file-trigger {
+  display: block;
+  padding: 10px;
+  background: #A53692;
+  color: #fff;
+  font-size: 1em;
+  transition: all .4s;
+  cursor: pointer;
+}
+.js .input-file {
+  position: absolute;
+  top: 0; left: 0;
+  width: 180px;
+  opacity: 0;
+  cursor: pointer;
+}
+.js .input-file:hover + .input-file-trigger,
+.js .input-file:focus + .input-file-trigger,
+.js .input-file-trigger:hover,
+.js .input-file-trigger:focus {
+  background: #79589F;
+  color: #fff;
+}
+
+.file-return {
+  margin: 0;
+}
+.file-return:not(:empty) {
+  margin: 1em 0;
+}
+.js .file-return {
+  font-style: italic;
+  font-size: .9em;
+  font-weight: bold;
+}
+.js .file-return:not(:empty):before {
+  content: "";
+  font-style: normal;
+  font-weight: normal;
+  
+}
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.new-job-modal {
+    max-width: 800px !important;
+}
+.orders-index .dataTables_filter{
+    display: none;
+}
+
+
+

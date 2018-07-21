@@ -59,12 +59,12 @@ Rails.application.configure do
   
   
   # ActionMailer::Base.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
-    :address => 'smtpout.secureserver.net',
-    :domain  => 'www.guidistan.com',
-    :port      => 80,
-    :user_name => Rails.application.secrets['mailer_username'],
-    :password => Rails.application.secrets['mailer_password'],
-    :authentication => :plain
-    }  
+  # ActionMailer::Base.smtp_settings = {
+  #   :address => 'smtpout.secureserver.net',
+  #   :domain  => 'www.guidistan.com',
+  #   :port      => 80,
+  #   :user_name => Rails.application.secrets['mailer_username'],
+  #   :password => Rails.application.secrets['mailer_password'],
+  #   :authentication => :plain
+  #   }  
 end

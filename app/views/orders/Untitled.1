@@ -1,0 +1,148 @@
+<div class="container">
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title mb-0">Seleccionar Cliente</h4>
+        </div>
+        <div class="modal-body">
+          <%#= form.select :client_id, Client.all.collect {|mt| [ mt.name, mt.id ] }.insert(0, ""), {:required => true} %>
+          <%#= form.select :client_id, options_for_select(Client.all.collect {|p| [ p.name, p.id ] }), { include_blank: true}, {required: true, :class => 'select' } %>
+        </div>
+        <div class="footer-modal">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary float-right" data-dismiss="modal">Concluído</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="modal" id="frameModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title mb-0">Seleccionar Moldura</h4>
+        </div>
+        <div class="modal-body">
+          <%#= form.select :frame, options_for_select(Product.frame.where("stock > ?", 1).collect{ |u| [u.product_code, u.id] }.insert(0, ""), :placeholder => "Frame"), required: true %>
+        </div>
+        <div class="footer-modal">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary float-right" data-dismiss="modal">Concluído</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div><button type="button" class="login loginmodal-button loginmodal-submit mb-2" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#myModal">-->
+    <!--  Seleccionar Cliente-->
+    <!--</button></div>-->
+    
+    <%#= link_to 'Adicionar Novo Client', new_client_path, class:"btn btn-primary" %>
+    <!--<div class="mb-2" id="clientselect"><div class="mb-2 h6">Clientes:</div><span class="text-client"></span>-->
+    <!--<%#= form.select :client_id, options_for_select(Client.registered.collect {|p| [ p.name, p.id ] }), { include_blank: true}, {required: true, :class => 'select' } %>-->
+    <!--<h5 class="mb-0">Ou</h5>-->
+    <!--</div>-->
+    
+    <!--<div id='client'>-->
+    <!--    <%#= form.fields_for :client do |cli| %>-->
+    <!--        <%#= render 'client_fields', f: cli %>-->
+    <!--    <%# end %>-->
+    <!--    <div onclick="addclient()" id="addclient"><%#= link_to_add_association "Adicionar Novo Client", form, :client, class:"btn btn-primary" %></div>-->
+        
+        
+    <!--</div>-->
+    <br>
+    <!--<div><button type="button" class="login loginmodal-button loginmodal-submit mb-2" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#frameModal">-->
+    <!--  Seleccionar Moldura-->
+    <!--</button></div>-->
+    
+ <!--<div><button type="button" class="login loginmodal-button loginmodal-submit mb-2" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#ppModal">-->
+    <!--  Seleccionar Passe-partout-->
+    <!--</button></div>-->
+    
+    <!--<div><button type="button" class="login loginmodal-button loginmodal-submit mb-2" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#accModal">-->
+    <!--  Seleccionar Acessórios-->
+    <!--</button></div>-->
+    
+    <div class="container">
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title mb-0">Seleccionar Cliente</h4>
+        </div>
+        <div class="modal-body">
+          <%#= form.select :client_id, Client.all.collect {|mt| [ mt.name, mt.id ] }.insert(0, ""), {:required => true} %>
+          <%#= form.select :client_id, options_for_select(Client.all.collect {|p| [ p.name, p.id ] }), { include_blank: true}, {required: true, :class => 'select' } %>
+        </div>
+        <div class="footer-modal">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary float-right" data-dismiss="modal">Concluído</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="modal" id="frameModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title mb-0">Seleccionar Moldura</h4>
+        </div>
+        <div class="modal-body">
+          <%#= form.select :frame, options_for_select(Product.frame.where("stock > ?", 1).collect{ |u| [u.product_code, u.id] }.insert(0, ""), :placeholder => "Frame"), required: true %>
+        </div>
+        <div class="footer-modal">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary float-right" data-dismiss="modal">Concluído</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="modal" id="ppModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title mb-0">Seleccionar Passe-partout</h4>
+        </div>
+        <div class="modal-body">
+          <div class="control-group">
+          <%#= form.collection_select(:passe_partout, Product.passe_partout.where("stock > ?", 1), :id, :product_code,{}, {:multiple => true, placeholder:"Seleccionar Passe Partout", required: true}) %>
+          </div>
+        </div>
+        <div class="footer-modal">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary float-right" data-dismiss="modal">Concluído</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="modal" id="accModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title mb-0">Seleccionar Acessórios</h4>
+        </div>
+        <div class="modal-body">
+          <%#= form.collection_select(:accessory, Product.accessory.where("stock > ?", 1), :id, :product_code,{}, {:multiple => true, placeholder:"Accessories"}) %>
+        </div>
+       <div class="footer-modal">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary float-right" data-dismiss="modal">Concluído</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

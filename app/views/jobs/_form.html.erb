@@ -1,0 +1,86 @@
+
+<%= form_with(model: job, local: true) do |form| %>
+  <% if job.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
+
+      <ul>
+      <% job.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="row">
+      <div class="col-md-6">
+            <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Name">Nome</span>
+      <%= form.text_field :name, id: :job_name , class:"form-control form-control-md", required: true, :aria => {:label => 'Name', :describedby => "Name" }%>
+    </div>
+      </div>
+      <div class="col-md-6">
+           <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Phone">Telefone</span>
+      <%= form.text_field :phone, id: :job_phone , class:"form-control form-control-md", required: true, :aria => {:label => 'Phone', :describedby => "Phone" }%>
+    </div>
+      </div>
+  </div>
+  
+    <div class="row">
+        <div class="col-md-6">
+             <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Material">Material</span>
+      <%= form.text_field :material, id: :job_material , class:"form-control form-control-md", required: true, :aria => {:label => 'Material', :describedby => "Material" }%>
+    </div>
+        </div>
+        <div class="col-md-6">
+             <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Delivery date">Data de Entrega</span>
+      <%= form.text_field :delivery_date, id: :"datepicker" , class:"form-control form-control-md", required: true, :aria => {:label => 'Delivery date', :describedby => "Delivery date" }%>
+    </div>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-md-6">
+              <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Quantity">Qtd</span>
+       <%= form.text_field :quantity, id: :job_quantity , class:"form-control form-control-md", required: true, :aria => {:label => 'Quantity', :describedby => "Quantity" }%>
+    </div>
+        </div>
+       
+        <div class="col-md-6">
+            <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Cost">Total</span>
+       <%= form.text_field :cost, id: :job_cost , class:"form-control form-control-md", required: true, :aria => {:label => 'Cost', :describedby => "Cost" }%>
+    </div>
+        </div>
+            </div>
+                    <div class="input-group input-group-sm mb-3">
+       <%= form.text_area :description, :placeholder => "Descrição", id: :job_description , class:"form-control form-control-md", required: true, :aria => {:label => 'Description', :describedby => "Description" }%>
+    </div>
+                
+     
+   <div class="row">
+       <div class="col-md-8">
+           <a href="/admin" class="btn btn-primary mb-2">Cancelar</a>
+       </div>
+       <div class="col-md-4">
+           <div class="row">
+               <div class="col-md-4">
+                   <button class="btn btn-primary mb-2" style="display: inline;" onclick="window.print();">Imprimir</button>
+                   
+               </div>
+               <div class="col-md-8">
+                    <div class="actions">
+                  <%= form.submit "Actualizar",class: "btn btn-primary mb-2" %>
+                    </div>
+               </div>
+           </div>
+          
+           
+       </div>
+   </div>     
+    
+  
+<% end %>

@@ -1,0 +1,84 @@
+<div class="container py-4">
+
+<h1>Clientes</h1>
+    <%# User.where(admin: false).each do |cli| %>
+        <%#= cli.email %>
+    <%# end %>
+  <div class="table-responsive table-index">
+    <table class="table table-bordered bg-white">
+      <thead>
+        <tr>
+          <!--<th>#</th>-->
+          <th>Nome</th>
+          <th>Telefone</th>
+          <th>2º Telefone</th>
+          <th>Data de nascimento</th>
+          <th>Email</th>
+          <th>NIF</th>
+          <th>Histórico</th>
+          <th>Trabalhos a decorrer</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% User.where(admin: false).each do |user| %>
+              <tr>
+                  <td> <%= user.name %> </td>
+                  <td> <%= user.phone_number %> </td>
+                  <td> <%= user.phone_number2 %> </td>
+                  <td> <%= user.dob %> </td>
+                  <td> <%= user.email %> </td>
+                  <td> <%= user.vat %> </td>
+                  <td> <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#histModal">Consultar</button> </td>
+                  <td> <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ongoingModal">Consultar</button> </td>
+              </tr>
+          </tbody>
+        </table>
+      </div>  
+                  <div class="container">
+                    <div class="modal" id="histModal">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title">Histórico</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+                          <div class="modal-body">
+                            <ul>
+                              <% user.orders.complete.each do |ord| %>
+                                <li><h3>Estado: </h3><%= ord.status %> <h3>Custo: </h3><%= ord.cost %></li>
+                              <% end %>
+                            </ul>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="container">
+                    <div class="modal" id="ongoingModal">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h4 class="modal-title">Trabalhos a decorrer</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                          </div>
+                          <div class="modal-body">
+                            <ul>
+                              <% user.orders.ongoing.each do |ord| %>
+                                <li><h3>Estado: </h3><%= ord.status %> <h3>Custo: </h3><%= ord.cost %></li>
+                              <% end %>
+                            </ul>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+          <% end %>
+  <%= link_to 'Adicionar Novo Cliente', new_client_path, class:"btn btn-primary" %>
+</div>  
+

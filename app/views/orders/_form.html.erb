@@ -1,0 +1,95 @@
+<div class="form-select">
+    <%= form_with(model: @order, local: true, remote: true) do |form| %>
+      <% if order.errors.any? %>
+      <div id="error_explanation">
+          <ul>
+            <% order.errors.full_messages.each do |message| %>
+            <li>
+                <%= message %>
+            </li>
+            <% end %>
+          </ul>
+      </div>
+      <% end %>
+      <div class="check"></div>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-addon" id="dob">Data de entrega</span>
+                  <%= form.text_field :delivery_date, class:"form-control form-control-md", required: true, id:"datepicker", :aria => {:label => 'dob', :describedby => "dob" }%>
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-addon" id="Comprimento">Comprimento (cm)</span>
+                  <%= form.number_field :length, required: true, :step => 0.1, class:"form-control form-control-md length", :aria => {:label => 'Comprimento', :describedby => "Comprimento" }%>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6">
+              <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-addon" id="Altura">Altura (cm)</span>
+                  <%= form.number_field :height, required: true, :step => 0.1, class:"form-control form-control-md height", :aria => {:label => 'Altura', :describedby => "Altura" }%>
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-addon" id="Outros">Outros</span>
+                  <%= form.number_field :others, :step => 0.1, class:"form-control form-control-md", :aria => {:label => 'Outros', :describedby => "Outros" }%>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-6">
+              <div class="mb-2 h6">Molduras: <span class='text-frame'></span></div>
+              <%= form.select :frame, options_for_select(Product.frame.where("stock > ?", 1).collect{ |u| [u.product_code, u.id] }), { include_blank: true}, {required: true, :class => 'select' } %>
+          </div>
+          <div class="col-md-6">
+              <div class="mb-2 h6">Passe-partouts:<span class="text-passe"></span></div>
+              <%= form.collection_select(:passe_partout, Product.passe_partout.where("stock > ?", 1), :id, :product_code,{}, {:multiple => true, placeholder:"Seleccionar Passe Partout", required: true}) %>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-6">
+              <div class="mb-2 h6">Acessórios:<span class="text-accessory"></span></div>
+              <%= form.collection_select(:accessory, Product.accessory.where("stock > ?", 1), :id, :product_code,{}, {:multiple => true, placeholder:"Acessórios"}) %>
+          </div>
+          <div class="col-md-6">
+              <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-addon" id="Observações">Observações</span>
+                  <%= form.text_area :notes, class:"form-control form-control-md", :aria => {:label => 'Observações', :describedby => "Observações" }%>
+              </div>
+          </div>
+      </div>
+
+      <div class="row">
+          <div class="col-md-6">
+              <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-addon" id="Sinal(%)">Sinal (%)</span>
+                  <%= form.number_field :advance, min: 0, max: 100, class:"form-control form-control-md", :aria => {:label => 'Sinal(%)', :describedby => "Sinal(%)" }%>
+              </div>
+          </div>
+          <div class="col-md-6">
+              <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-addon" id="Desconto(%)">Desconto (%)</span>
+                  <%= form.number_field :discount, min: 0, max: 100, class:"form-control form-control-md", :aria => {:label => 'Desconto(%)', :describedby => "Desconto(%)" }%>
+              </div>
+          </div>
+      </div>
+
+      <div class="mb-2">
+          <%#= check_box_tag :stimulation %>
+      </div>
+
+      <div class="row">
+          <div class="col-md-6 offset-md-3">
+              <div class="actions">
+                  <%= form.submit "Próximo", class: "login loginmodal-button loginmodal-submit", name: "sub" %>
+              </div>
+          </div>
+      </div>
+    <% end %>
+</div>

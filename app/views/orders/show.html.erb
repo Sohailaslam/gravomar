@@ -1,0 +1,95 @@
+
+
+<div class="container-fluid py-3">
+  <div class="row">
+  	<div class="loginmodal-container">
+  		<div class="loginmodal-container-2">
+  		  <h1>Encomenda</h1>
+        
+        <div class="table-responsive">
+          <table class="table table-bordered bg-white">
+            <tbody>
+              <tr>
+                <th>Cliente</th>
+                <td> <%= Client.find(@order.client_id).name unless @order.client_id.nil? %><%= @order.client_name unless @order.client_name.nil? %> </td>
+              </tr>
+              <tr>
+                <th>Email/Número de Telefone</th>
+                <td> <%= Client.find(@order.client_id).email unless @order.client_id.nil? %><%= @order.client_phone  unless @order.client_phone.nil? %> </td>
+              </tr>
+              <tr>
+                <th>Observações<es></es></th>
+                <td><%= @order.notes %></td>
+              </tr>
+              <tr>
+                <th>Custo total</th>
+                <td>&euro; <%= @order.cost %></td>
+              </tr>
+              <tr>
+              <th>Data de criação</th>
+              <td><%= @order.created_at.strftime("%d/%m/%Y") %></td>
+              </tr>
+              <tr>
+              <th>Data de entrega</th>
+              <td><%= @order.delivery_date.strftime("%d/%m/%Y") %></td>
+              </tr>
+              <tr>
+              <th>Imagem</th>
+              <td><a href="" data-toggle="modal" data-target="#myModal"><%= image_tag(@order.products.frame.first.image.url, height: 30, width: 30) if @order.products.frame.first.image.present? %></a></td>
+              <!--<td><a href="<%#= @order.products.frame.first.image.url %>" target="_blank"></a></td>-->
+              <!--<td><%#= link_to "Preview", @order.products.frame.first.image.url, class:"btn btn-primary btn-sm", target: :blank if @order.products.frame.first.image.present? %></td>-->
+              </tr>
+            </tbody>
+          
+          </table>
+        </div>
+        <center>
+        
+        
+        </center>
+        <center>
+        <%= link_to 'Excluir', order_path(@order), :method => :delete, class:"btn btn-primary btn-sm" %>
+        <%= link_to 'Editar', edit_order_path(@order), class:"btn btn-primary btn-sm" %>
+        <%= link_to 'Voltar', orders_path, class:"btn btn-primary btn-sm" %>
+        <%= link_to 'Proforma', order_path(@order, format: 'pdf'), target: '_blank',class: "btn btn-primary btn-sm"%>
+
+ 
+
+        </center>
+        
+      </div>
+    </div>
+  </div>
+</div>  
+
+
+<div class="container">
+  
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Imagem</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          
+        </div>
+        <center><%= image_tag(@order.products.frame.first.image.url, height: 200, width: 200) if @order.products.frame.first.image.present? %></center>
+        <br>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  
+</div>

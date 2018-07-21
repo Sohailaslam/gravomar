@@ -1,0 +1,80 @@
+<div class="container-fluid py-3">
+  <div class="row">
+  	  <div class="loginmodal-container">
+  		<div class="loginmodal-container-2">
+  				<h1>Resumo</h1>
+  				<div class="table-responsive">
+                  <table class="table table-bordered bg-white">
+                    <tbody>
+                      <tr>
+                        <th>Cliente:</th>
+                        <td><%= @order.stimulation? ? @order.client_name : (Client.find(@order.client_id).name unless @order.client_id.nil?) %> </td>
+                      </tr>
+                      <tr>
+                        <th>Data de entrega:</th>
+                        <td><%= @order.delivery_date.strftime("%d/%m/%Y") %> </td>
+                      </tr>
+                      <tr>
+                        <th>Molduras:</th>
+                        <td>&euro; <%= @order.frame_cost %> </td>
+                      </tr>
+                      <tr>
+                        <th>Passe Partout:</th>
+                        <td>&euro; <%= @order.passe_partout_cost %> </td>
+                      </tr>
+                      <tr>
+                        <th>Acessórios:</th>
+                        <td>&euro; <%= @order.accessory_cost %> </td>
+                      </tr>
+                      <tr>
+                        <th>Outros:</th>
+                        <td>&euro; <%= @order.others.nil? ? 0 : @order.others.round(2) %> </td>
+                      </tr>
+                      <tr>
+                        <th>Custo total:</th>
+                        <td>&euro; <%= @cost %> </td>
+                      </tr>
+                      <tr>
+                        <th>Desconto:</th>
+                        <td> <%= @order.discount %>% (&euro; <%= @discount %>)</td>
+                      </tr>
+                      
+                      <tr>
+                        <th>Sinal:</th>
+                        <td><%= @order.advance %>% (&euro; <%= ((@order.advance * @cost)/100).round(2) %>)</td>
+                      </tr>
+                      <tr>
+                        <th>Remanescente:</th>
+                        <td>&euro; <%= (@cost - ((@order.advance * @cost)/100)).round(2) %></td>
+                      </tr>
+                      <tr >
+                        
+                        <% if @order.ongoing? %>
+                          <%= link_to "Simulação", order_path(@order, order: {status: "stimulation"}, cost_check: 1), class:"btn", method: :put %>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <%= link_to "A decorrer", order_path(@order, order: {status: "ongoing"}, cost_check: 1), class:"btn btn-primary btn-sm", method: :put %>
+                          
+                        <% elsif @order.stimulation? %>
+                        
+                        <%= link_to "Simulação", order_path(@order, order: {status: "ongoing"}, cost_check: 1), class:"btn btn-primary btn-sm", method: :put %>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <%= link_to "A decorrer", order_path(@order, order: {status: "ongoing"}, cost_check: 1), class:"btn",method: :put %>
+                          
+                        <% end %>
+                        
+                        </tr>
+                        <tr>
+                        <td><%= link_to "Rejeitar", @order, class: "login loginmodal-button loginmodal-submit", method: :delete %></td>
+                        <td><%= link_to "Aceitar", new_client_path(order: @order), class: "login loginmodal-button loginmodal-submit" %></td>
+                      </tr>
+                    </tbody>
+                  
+                  </table>
+                </div>
+                
+
+  				</div>
+  			</div>	
+  		</div> 
+  </div>
+</div>

@@ -1,10 +1,11 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :lockable,
-         :recoverable, :rememberable, :confirmable, :trackable, :validatable,:omniauthable, omniauth_providers: %i[facebook linkedin google_oauth2 twitter]
+  # devise :database_authenticatable, :lockable,:recoverable, :rememberable, :registerable, :trackable, :confirmable, :validatable,:omniauthable, omniauth_providers: %i[facebook linkedin google_oauth2 twitter]
+
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook, :google_oauth2]
   
-  validates_uniqueness_of :username       
+  # validates_uniqueness_of :username       
   def make_admin
     self.update!(admin: true)
   end
@@ -19,6 +20,9 @@ class User < ApplicationRecord
       # If you are using confirmable and the provider(s) you use validate emails, 
       # uncomment the line below to skip the confirmation emails.
       user.skip_confirmation!
+    end
   end
-end
+  
+  
+  
 end

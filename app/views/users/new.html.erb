@@ -1,0 +1,38 @@
+<div class="container-fluid py-3">
+  <div class="row">
+  	 <div class="loginmodal-container">
+  		<div class="loginmodal-container-2 form-select form-select-dob">
+  		<h1>Novo Cliente</h1>
+          <%= form_for @client do |f| %>
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="Nome">Nome*</span>
+             <%= f.text_field :name, class:"form-control form-control-md", required: true, :aria => {:label => 'Nome', :describedby => "Nome" }%>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="Telefone">Telefone*</span>
+             <%= f.text_field :phone_number, class:"form-control form-control-md", required: true, :aria => {:label => 'Telefone', :describedby => "Telefone" }%>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="2Telefone">2º Telefone</span>
+             <%= f.text_field :phone_number, class:"form-control form-control-md", :aria => {:label => '2Telefone', :describedby => "2Telefone" }%>
+          </div>
+              <div class="mb-2 h6"><%= f.label "Date of Birth" %></div>
+              <%= f.date_select :dob, placeholder: " Data de nascimento*" , required: true %>
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="Email">Email*</span>
+             <%= f.email_field :email, class:"form-control form-control-md", required: true, :aria => {:label => 'Email', :describedby => "Email" }%>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="NIF">NIF*</span>
+             <%= f.number_field :vat, class:"form-control form-control-md", required: true, :aria => {:label => 'NIF', :describedby => "NIF" }%>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="Notas">Notas</span>
+             <%= f.text_area :notes, class:"form-control form-control-md", :aria => {:label => 'Notas', :describedby => "Notas" }%>
+            </div>
+				      <%= f.submit "Adicionar Cliente", class: "login loginmodal-button loginmodal-submit" %>
+               <% end -%>
+  			  </div>
+  		</div> 
+    </div>
+</div>

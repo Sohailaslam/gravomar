@@ -1,0 +1,21 @@
+<div class="container-fluid py-3">
+  <div class="row">
+  	  <div class="loginmodal-container">
+  			<div class="loginmodal-container-2">
+  				<h1>Join Gravomar</h1>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                <%= devise_error_messages! %>
+          				
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-md", placeholder: "Enter Your Email" , id: "join_email", required: true %>
+                <%= f.password_field :password, autocomplete: "off", class: "form-control form-control-md", placeholder: "Enter Your Password"  , id: "join_pword", required: true %>
+                <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control form-control-md", placeholder: "Confirm Your Password", id: "join_cpword", required: true %>
+    					
+    					  <%= f.submit "Sign Up", class: "login loginmodal-button loginmodal-submit" %>
+      			<% end %>
+  				
+  			</div>
+  				<hr class="hr-or">
+  				<p style="text-align: center;">Already a Member? <a href="/users/sign_in"> Login </a></p>
+  		</div> 
+  </div>
+</div>

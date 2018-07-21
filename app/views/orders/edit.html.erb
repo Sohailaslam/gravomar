@@ -1,0 +1,79 @@
+<div class="container-fluid py-3">
+    <div class="row">
+        <div class="loginmodal-container loginmodal-container-order">
+            <div class="loginmodal-container-2">
+                <h1>Editar Encomenda</h1>
+
+                <div class="form-select">
+                    <%= form_with(model: @order, local: true, remote: true) do |form| %>
+
+                        <div class="check"></div>
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-addon" id="dob">Data de entrega</span>
+                            <%= form.text_field :delivery_date, class:"form-control form-control-md", required: true, id:"datepicker", :aria => {:label => 'dob', :describedby => "dob" }%>
+                        </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-addon" id="Comprimento">Comprimento (cm)</span>
+                            <%= form.number_field :length, required: true,:step => 0.1, class:"form-control form-control-md length", :aria => {:label => 'Comprimento', :describedby => "Comprimento" }%>
+                        </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-addon" id="Altura">Altura (cm)</span>
+                            <%= form.number_field :height, required: true,:step => 0.1, class:"form-control form-control-md height", :aria => {:label => 'Altura', :describedby => "Altura" }%>
+                        </div>
+
+                        <% if @order.ongoing? %>
+                        <div class="mb-2" id="clientselect">
+                        <div class="mb-2 h6">Clientes:</div><span class="text-client"></span>
+                        <%= form.select :client_id, options_for_select(Client.all.collect{ |u| [u.name, u.id] },[Client.find(@order.client_id).name,@order.client_id]), { include_blank: true}, {required: true, :class => 'select' } %>
+                            <% elsif @order.stimulation? %>
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-addon" id="dob">Nome do Cliente</span>
+                            <%= form.text_field :client_name, class:"form-control form-control-md", required: true, :aria => {:label => 'Nome do Cliente', :describedby => "Nome do Cliente" }%>
+                        </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-addon" id="Comprimento">Telefone do Cliente</span>
+                            <%= form.number_field :client_phone, required: true, class:"form-control form-control-md length", :aria => {:label => 'Telefone do Cliente', :describedby => "Telefone do Cliente" }%>
+                        </div>
+
+                        <% end %>
+
+                        <div class="mb-2 h6">Molduras: <span class='text-frame'></span></div>
+                        <%= form.select :frame, options_for_select(Product.frame.where("stock > ?", 1).collect{ |u| [u.product_code, u.id] },[Product.find(@order.frame.to_i).product_code,@order.frame.to_i]), { include_blank: true}, {required: true, :class => 'select' } %>
+
+                        <div class="mb-2 h6">Passe-partouts:<span class="text-passe"></span></div>
+                        <%= form.collection_select(:passe_partout, Product.passe_partout.where("stock > ?", 1), :id, :product_code,{ selected: @order.products.passe_partout.map(&:id) }, {:multiple => true, placeholder:"Seleccionar Passe Partout", required: true}) %>
+
+                        <div class="mb-2 h6">Acessórios:<span class="text-accessory"></span></div>
+                        <%= form.collection_select(:accessory, Product.accessory.where("stock > ?", 1), :id, :product_code,{ selected: @order.products.accessory.map(&:id) }, {:multiple => true, placeholder:"Acessórios"}) %>
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-addon" id="Outros">Outros</span>
+                            <%= form.number_field :others, class:"form-control form-control-md", :aria => {:label => 'Outros', :describedby => "Outros" }%>
+                        </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-addon" id="Observações">Observações</span>
+                            <%= form.text_area :notes, class:"form-control form-control-md", :aria => {:label => 'Observações', :describedby => "Observações" }%>
+                        </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-addon" id="Sinal(%)">Sinal (%)</span>
+                            <%= form.number_field :advance, min: 0, max: 100, class:"form-control form-control-md", :aria => {:label => 'Sinal(%)', :describedby => "Sinal(%)" }%>
+                        </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <span class="input-group-addon" id="Desconto(%)">Desconto (%)</span>
+                            <%= form.number_field :discount, min: 0, max: 100, class:"form-control form-control-md", :aria => {:label => 'Desconto(%)', :describedby => "Desconto(%)" }%>
+                        </div>
+                        <!--<div class="mb-2">-->
+                        <!--    <%#= check_box_tag :stimulation, 1, @order.stimulation? %> Simulação-->
+                        <!--</div>-->
+
+                        <div class="actions">
+                            <%= form.submit "Atualizar", class: "login loginmodal-button loginmodal-submit", name: "sub" %>
+                        </div>
+
+                    </div>
+
+                    <% end %>
+                </div>
+            </div>
+
+        </div>
+    </div>

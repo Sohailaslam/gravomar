@@ -1,0 +1,205 @@
+<div class="container py-4">
+          
+  <div class="row">
+      <div class="col-md-12 jumbotron py-2">
+          <h3 style="margin: 0">Estatísticas</h3>
+      </div>
+  </div>
+  
+  <section class="blocks">
+      <div class="row mb-4">
+         <div class="col-6 col-sm-3">
+          <div class="card">
+              <div class="card-body">
+                  <center>
+                       <h5>Clients</h5>
+                          <h2><%= User.where(admin: false).count %></h2>
+                  </center>
+              </div>
+          </div>
+      </div>
+      <div class="col-6 col-sm-3">
+          <div class="card">
+              <div class="card-body">
+                  <center>
+                       <h5>Products</h5>
+                          <h2><%= Product.count %></h2>
+                  </center>
+              </div>
+          </div>
+      </div>
+          
+     </div>
+  </section>
+          
+          
+                
+          <h1>Dashboard</h1>
+
+          <section class="row text-center placeholders">
+            <div class="col-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+              <h4>Total Clients</h4>
+              <div class="text-muted"><%= User.where(admin: false).count %></div>
+            </div>
+            <div class="col-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+              <h4>Total Products</h4>
+              <span class="text-muted"><%= Product.count %></span>
+            </div>
+          </section>
+          
+          <h2>Stock</h2>
+          <div class="pull-md-right"><%= link_to "Novo Product", new_product_path, class: "btn btn-primary" %></div>
+          <section class="row text-center placeholders">
+            <div class="col-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+              <h4>Frames</h4>
+              <div class="text-muted"><%= Product.frame.count %></div>
+            </div>
+            <div class="col-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIABAADcgwAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+              <h4>Passe Partout</h4>
+              <span class="text-muted"><%= Product.passe_partout.count %></span>
+            </div>
+            <div class="col-6 col-sm-3 placeholder">
+              <img src="data:image/gif;base64,R0lGODlhAQABAIABAAJ12AAAACwAAAAAAQABAAACAkQBADs=" width="200" height="200" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail">
+              <h4>Accessories</h4>
+              <span class="text-muted"><%= Product.accessory.count %></span>
+            </div>
+          </section>
+
+          <h2>Client</h2>
+          <div class="pull-md-right"><%= link_to "Novo Client", new_user_path, class: "btn btn-primary" %></div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <!--<th>#</th>-->
+                  <th>Name</th>
+                  <th>Phone Number</th>
+                  <th>Phone Number 2</th>
+                  <th>Date of Birth</th>
+                  <th>Email</th>
+                  <th>VAT</th>
+                  <th>Orders History</th>
+                  <th>On-going Orders</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <% User.where(admin: false).each do |user| %>
+                      <tr>
+                          <td> <%= user.name %> </td>
+                          <td> <%= user.phone_number %> </td>
+                          <td> <%= user.phone_number2 %> </td>
+                          <td> <%= user.dob %> </td>
+                          <td> <%= user.email %> </td>
+                          <td> <%= user.vat %> </td>
+                          <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#histModal">Consultar</button> </td>
+                          <div class="container">
+                            <div class="modal" id="histModal">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h4 class="modal-title">Order History</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <ul>
+                                      <% user.orders.complete.each do |ord| %>
+                                        <li><h3>Estado: </h3><%= ord.status %> <h3>Cost: </h3><%= ord.cost %></li>
+                                      <% end %>
+                                    </ul>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <td> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ongoingModal">Consultar</button> </td>
+                          <div class="container">
+                            <div class="modal" id="ongoingModal">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h4 class="modal-title">On Going Orders</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <ul>
+                                      <% user.orders.ongoing.each do |ord| %>
+                                        <li><h3>Estado: </h3><%= ord.status %> <h3>Cost: </h3><%= ord.cost %></li>
+                                      <% end %>
+                                    </ul>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Fechar</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                      </tr>
+                  <% end %>
+              </tbody>
+            </table>
+          </div>
+          <h2>Orders</h2>
+          <div class="pull-md-right"><%= link_to "Novo Order", new_order_path, class: "btn btn-primary" %></div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <!--<th>#</th>-->
+                  <th>Client Name</th>
+                  <th>Client Email</th>
+                  <th>Estado</th>
+                  <th>Cost</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <% Order.all.each do |ord| %>
+                      <tr>
+                          <td> <%= User.find(ord.user_id).name %> </td>
+                          <td> <%= User.find(ord.user_id).email %> </td>
+                          <td> <%= ord.status %> </td>
+                          <td> <%= ord.cost %> </td>
+                      </tr>
+                  <% end %>
+              </tbody>
+            </table>
+          </div>
+          <h2>Products</h2>
+          <div class="pull-md-right"><%= link_to "Novo Product", new_product_path, class: "btn btn-primary" %></div>
+          <div class="table-responsive">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Product ID</th>
+                  <th>Prodct Type</th>
+                  <th>Color</th>
+                  <th>Height</th>
+                  <th>Width</th>
+                  <th>Price</th>
+                  <th>Photo</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <% Product.all.each do |prod| %>
+                      <tr>
+                          <td> <%= prod.product_code %> </td>
+                          <td> <%= prod.kind %> </td>
+                          <td> <%= prod.color %> </td>
+                          <td> <%= prod.height %> </td>
+                          <td> <%= prod.width %> </td>
+                          <td> <%= prod.price %> </td>
+                          <td> <%#= prod.image %></td>
+                      </tr>
+                  <% end %>
+              </tbody>
+            </table>
+          </div>
+    </div>

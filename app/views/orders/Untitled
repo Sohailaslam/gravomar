@@ -1,0 +1,30 @@
+<br><br>
+<table class="table table-bordered bg-white">
+  <h3>Trabalhos completos</h3>
+  <thead>
+    <tr>
+      <th>Cliente</th>
+      <th>Cliente Email</th>
+      <th>Data de criação</th>
+      <th>Data de entrega</th>
+      <th>Custo total</th>
+      <th>Incompleto?</th>
+      <th>Detalhes</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @orders.complete.each do |order| %>
+      <tr>
+        <td> <%= Client.find(order.client_id).name %> </td>
+        <td> <%= Client.find(order.client_id).email %> </td>
+        <td><%= order.created_at.strftime("%d/%m/%Y") %></td>
+        <td><%= order.delivery_date.strftime("%d/%m/%Y") %></td>
+        <td><%= order.cost %></td>
+        <td><%= link_to "Incompleto?", order_path(order, order: {status: "ongoing"}), class:"btn btn-primary btn-sm", method: :put %></td>
+        <td><%= link_to "Detalhes", order_path(order), class:"btn btn-primary btn-sm" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>

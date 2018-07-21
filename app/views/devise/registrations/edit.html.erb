@@ -1,0 +1,40 @@
+<div class="container-fluid py-3">
+  <div class="row">
+  	  <div class="loginmodal-container loginmodal-user-edit">
+  			<div class="loginmodal-container-2">
+  				<h1>Alterar a password</h1>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <%= devise_error_messages! %>
+          		
+                 <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-addon" id="email">Email</span>
+                    <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control form-control-md", :aria => {:label => 'email', :describedby => "email" }%>
+                </div>
+                  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+                  <% end %>
+                <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-addon" id="Npassword">Nova password</span>
+                   <%= f.password_field :password, autocomplete: "off", class:"form-control form-control-md", :aria => {:label => 'Npassword', :describedby => "Npassword" }%>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-addon" id="Rpassword">Repetir password</span>
+                    <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control form-control-md", :aria => {:label => 'Rpassword', :describedby => "Rpassword" }%>
+                </div>
+                <div class="input-group input-group-sm mb-3">
+                  <span class="input-group-addon" id="Cpassword">Password actual</span>
+                    <%= f.password_field :current_password, autocomplete: "off", class:"form-control form-control-md", :aria => {:label => 'Cpassword', :describedby => "Cpassword" }%>
+                </div>
+               
+               <%= f.submit "Alterar a Password", class: "login loginmodal-button loginmodal-submit" %>
+      			<% end %>
+  				
+  				<div class="row">
+  				  <center class="w-100">
+  				    <a href="/" class="btn btn-link">Voltar para o Dashboard</a>
+  				  <center>  
+  				</div>
+  			</div>
+  		</div> 
+  </div>
+</div>

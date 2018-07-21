@@ -35,6 +35,10 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :username
       t.string :phone_number
+      t.string :phone_number2
+      t.date :dob
+      t.integer :vat
+      t.text :notes
       t.string :identifier
       t.string :company_name
       t.string :linkedin_link
@@ -46,6 +50,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.string :other_link3
       t.text :experience
       t.boolean :admin, default: false
+      t.integer :order_id
 
       t.timestamps null: false
     end

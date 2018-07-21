@@ -1,0 +1,48 @@
+<h5>Adicionar Novo Client</h5>
+<div class="nested-fields">
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Nome">Nome*</span>
+      <%= f.text_field :name, class: "form-control form-control-md", required: true, :aria => {:label => 'Nome', :describedby => "Nome" }%>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Telefone">Telefone*</span>
+      <%= f.text_field :phone_number, class: "form-control form-control-md", required: true, :aria => {:label => 'Telefone', :describedby => "Telefone" }%>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="2Telefone">2º Telefone</span>
+      <%= f.text_field :phone_number2, class: "form-control form-control-md", :aria => {:label => '2º Telefone', :describedby => "2Telefone" }%>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="dob">Date of Birth</span>
+       <%= f.text_field :dob, class:"form-control form-control-md", required: true, id:"datepicker2", :aria => {:label => 'dob', :describedby => "dob" }%>
+    </div>
+    
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Email">Email</span>
+      <%= f.email_field :email, class: "form-control form-control-md", :aria => {:label => 'Email', :describedby => "Email" }%>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="NIF">NIF*</span>
+       <%= f.number_field :vat, min: 0, max: 100, class: "form-control form-control-md", :aria => {:label => 'NIF', :describedby => "NIF" }%>
+    </div>
+    <div class="input-group input-group-sm mb-3">
+        <span class="input-group-addon" id="Notas">Notas</span>
+       <%= f.text_area :notes, class: "form-control form-control-md", :aria => {:label => 'Notas', :describedby => "Notas" }%>
+    </div>
+    <div onclick="removeclient()"><%= link_to_remove_association "Remova Este Cliente", f, id:"remove-client", class:"btn btn-warning" %></div>
+</div>
+<script>
+$(document).ready(function() {
+   $('.form-select select').addClass('form-control');
+   $('.form-select select').addClass('form-control-md');
+   $('.form-select select').addClass('mb-3');
+    
+});
+$( "#datepicker2" ).datepicker({
+    monthNames:[ "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" ],
+     dateFormat: "yy-mm-dd",
+     dayNamesMin: ["Do", "Se", "Te", "Qua", "Qui", "Se", "Sá"]
+    });
+
+</script>
+

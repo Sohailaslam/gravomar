@@ -1,0 +1,105 @@
+
+<div class="container-fluid py-3">
+  <div class="row">
+  	 <div class="loginmodal-container">
+  		<div class="loginmodal-container-2">
+  		  <% if @order and @order.ongoing? %>
+  		  <br>
+		    <%= form_with(model: @order, local: true, remote: true) do |form| %>
+		      <div class="mb-2" id="clientselect"><div class="mb-2 h6">Clientes:</div><span class="text-client"></span>
+          <%= form.select :client_id, options_for_select(Client.registered.collect {|p| [ p.name, p.id ] }), { include_blank: true}, {required: true, :class => 'select' } %>
+          <br>
+          <%= form.submit "Continuar", class: "login loginmodal-button loginmodal-submit", name: "sub" %>
+        <% end %>
+        <br>
+        <center><h2>Ou</h2></center>
+  		  <h1>Novo Cliente</h1>
+          <%= form_for @client do |f| %>
+              <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="Nome">Nome*</span>
+             <%= f.text_field :name, class:"form-control form-control-md", required: true, :aria => {:label => 'Nome', :describedby => "Nome" }%>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="Telefone">Telefone*</span>
+             <%= f.text_field :phone_number, class:"form-control form-control-md", required: true, :aria => {:label => 'Telefone', :describedby => "Telefone" }%>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="2Telefone">2º Telefone</span>
+             <%= f.text_field :phone_number2, class:"form-control form-control-md", :aria => {:label => '2Telefone', :describedby => "2Telefone" }%>
+          </div>
+          <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="dob">Data de nascimento</span>
+             <%= f.text_field :dob, class:"form-control form-control-md", required: true, id:"datepicker", :aria => {:label => 'dob', :describedby => "dob" }%>
+          </div>
+              
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="Email">Email*</span>
+             <%= f.email_field :email, class:"form-control form-control-md", required: true, :aria => {:label => 'Email', :describedby => "Email" }%>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="NIF">NIF</span>
+             <%= f.number_field :vat, class:"form-control form-control-md", :aria => {:label => 'NIF', :describedby => "NIF" }%>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="Notas">Notas</span>
+             <%= f.text_area :notes, class:"form-control form-control-md", :aria => {:label => 'Notas', :describedby => "Notas" }%>
+            </div>
+              <%= hidden_field_tag :order, @order.id %>
+				      <%= f.submit "Adicionar cliente", class: "login loginmodal-button loginmodal-submit" %>
+               <% end -%>
+          <% elsif @order and @order.stimulation? %>
+            <br>
+            <%= form_with(model: @order, local: true, remote: true) do |form| %>
+            	<div class="input-group input-group-sm mb-3">
+                <span class="input-group-addon" id="dob">Nome do Cliente</span>
+                <%= form.text_field :client_name, class:"form-control form-control-md", required: true, :aria => {:label => 'Nome do Cliente', :describedby => "Nome do Cliente" }%>
+              </div>
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-addon" id="Comprimento">Telefone do Cliente</span>
+                <%= form.number_field :client_phone, required: true, class:"form-control form-control-md length", :aria => {:label => 'Telefone do Cliente', :describedby => "Telefone do Cliente" }%>
+              </div>
+              <%= form.submit "Confirmar", class: "login loginmodal-button loginmodal-submit", name: "sub" %>
+            <% end %>
+          <% else %>
+          
+            <h1>Novo Cliente</h1>
+            <%= form_for @client do |f| %>
+                <div class="input-group input-group-sm mb-3">
+                <span class="input-group-addon" id="Nome">Nome*</span>
+               <%= f.text_field :name, class:"form-control form-control-md", required: true, :aria => {:label => 'Nome', :describedby => "Nome" }%>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-addon" id="Telefone">Telefone*</span>
+               <%= f.text_field :phone_number, class:"form-control form-control-md", required: true, :aria => {:label => 'Telefone', :describedby => "Telefone" }%>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-addon" id="2Telefone">2º Telefone</span>
+               <%= f.text_field :phone_number2, class:"form-control form-control-md", :aria => {:label => '2Telefone', :describedby => "2Telefone" }%>
+            </div>
+            <div class="input-group input-group-sm mb-3">
+                <span class="input-group-addon" id="dob">Data de nascimento</span>
+               <%= f.text_field :dob, class:"form-control form-control-md", required: true, id:"datepicker", :aria => {:label => 'dob', :describedby => "dob" }%>
+            </div>
+                
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-addon" id="Email">Email*</span>
+               <%= f.email_field :email, class:"form-control form-control-md", required: true, :aria => {:label => 'Email', :describedby => "Email" }%>
+              </div>
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-addon" id="NIF">NIF</span>
+               <%= f.number_field :vat, class:"form-control form-control-md", :aria => {:label => 'NIF', :describedby => "NIF" }%>
+              </div>
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-addon" id="Notas">Notas</span>
+               <%= f.text_area :notes, class:"form-control form-control-md", :aria => {:label => 'Notas', :describedby => "Notas" }%>
+              </div>
+  				      <%= f.submit "Adicionar cliente", class: "login loginmodal-button loginmodal-submit" %>
+                 <% end -%>
+            
+          
+            
+          <% end %>
+  			  </div>
+  		</div> 
+    </div>
+</div>

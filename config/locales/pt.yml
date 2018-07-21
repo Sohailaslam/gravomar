@@ -1,0 +1,8 @@
+pt:
+    hello: "hello world"
+    frame: "Moldura"
+    accessory: "Acessório"
+    passe_partout: "Passe Partout"
+    stimulation: "Simulação"
+    ongoing: "A decorrer"
+    complete: "Terminadas"

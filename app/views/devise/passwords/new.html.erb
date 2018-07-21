@@ -1,0 +1,23 @@
+<div class="container-fluid py-3">
+  <div class="row">
+<div class="loginmodal-container mt-3">
+  <div class="loginmodal-container-2">
+<h2>Forgot your password?</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div class="input-group input-group-sm mb-3">
+    <span class="input-group-addon" id="email">Email</span>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control form-control-md", :aria => {:label => 'email', :describedby => "email" }%>
+  </div>
+  <div class="actions text-center">
+    <%= f.submit "Send me reset password instructions" , class: "btn btn-primary" %>
+  </div>
+<% end %>
+  </div>
+
+</div>
+</div>
+</div>
+

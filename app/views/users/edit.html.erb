@@ -1,95 +1,31 @@
-<h2> Edit Profile</h2>
-<br>
-<%= form_for @user do |f| %>
-    <div class="form-group row">
-        <%= f.label :name, :class => "col-2 col-form-label" %> <br />
-        <div class="col-10">
-            <%= f.text_field :name, :class => 'form-control' %><br />
-        </div>
-    </div>
-    
-    <div class="form-group row">
-        <%= f.label :username, :class => "col-2 col-form-label" %> <br />
-        <div class="col-10">
-            <%= f.text_field :username, :class => 'form-control' %><br />
-        </div>
-    </div>
-    
-    <div class="form-group row">
-        <%= f.label :identifier, :class => "col-2 col-form-label" %> <br />
-        <div class="col-10">
-            <%= f.text_field :identifier, :class => 'form-control' %><br />
-        </div>
-    </div>
-    
-    <div class="form-group row">
-        <%= f.label :phone_number, :class => "col-2 col-form-label" %> <br />
-        <div class="col-10">
-            <%= f.text_field :phone_number, :class => 'form-control' %><br />
-        </div>
-    </div>
-    
-    <div class="form-group row">
-        <%= f.label :company_name, :class => "col-2 col-form-label" %> <br />
-        <div class="col-10">
-            <%= f.text_field :company_name, :class => 'form-control' %><br />
-        </div>
-    </div>
-    
-    <div class="form-group row">
-        <%= f.label :githhub_link, :class => "col-2 col-form-label" %> <br />
-        <div class="col-10">
-            <%= f.text_field :githhub_link, :class => 'form-control' %><br />
-        </div>
-    </div>
-    
-    <div class="form-group row">
-        <%= f.label :website_link, :class => "col-2 col-form-label" %> <br />
-        <div class="col-10">
-            <%= f.text_field :website_link, :class => 'form-control' %><br />
-        </div>
-    </div>
-    
-    <div class="form-group row">
-        <%= f.label :portfolio, :class => "col-2 col-form-label" %> <br />
-        <div class="col-10">
-            <%= f.text_field :portfolio, :class => 'form-control' %><br />
-        </div>
-    </div>
-    
-    <div class="form-group row">
-        <%= f.label :linkedin_link, :class => "col-2 col-form-label" %> <br />
-        <div class="col-10">
-            <%= f.text_field :linkedin_link, :class => 'form-control' %><br />
-        </div>
-    </div>
-    
-    <div class="form-group row">
-        <%= f.label :other_link1, :class => "col-2 col-form-label" %> <br />
-        <div class="col-10">
-            <%= f.text_field :other_link1, :class => 'form-control' %><br />
-        </div>
-    </div>
-    
-    <div class="form-group row">
-        <%= f.label :other_link2, :class => "col-2 col-form-label" %> <br />
-        <div class="col-10">
-            <%= f.text_field :other_link2, :class => 'form-control' %><br />
-        </div>
-    </div>
-    
-    <div class="form-group row">
-        <%= f.label :other_link3, :class => "col-2 col-form-label" %> <br />
-        <div class="col-10">
-            <%= f.text_field :other_link3, :class => 'form-control' %><br />
-        </div>
-    </div>
-    
-    <div class="form-group row">
-        <%= f.label :experience, :class => "col-2 col-form-label" %> <br />
-        <div class="col-10">
-            <%= f.text_area :experience, :class => 'form-control' %><br />
-        </div>
-    </div>
-    <%= f.submit "Update" %>
-<% end %>
+<div class="container-fluid py-3">
+  <div class="row">
+  	  <div class="loginmodal-container">
+  		<div class="loginmodal-container-2 form-select form-select-dob">
+  				<h1>Definições</h1>
+              <%= form_for @user do |f| %>
+              <div class="input-group input-group-sm mb-3">
+                <span class="input-group-addon" id="NIF">IVA*</span>
+               <%= f.number_field :vat, class:"form-control form-control-md", min: 0, max: 100, required: true, :aria => {:label => 'NIF', :describedby => "NIF" }%>
+              </div>
+              <div class="input-group input-group-sm mb-3">
+              <span class="input-group-addon" id="Notas">Rodapé do orçamento</span>
+               <%= f.text_area :notes, class:"form-control form-control-md", :aria => {:label => 'Notas', :describedby => "Notas" }%>
+              </div>
+              <%= f.submit "Actualizar", class: "login loginmodal-button loginmodal-submit" %>
+      			<% end %>
+      			<div class="mb-2">
+      			  <center>
+                <%= link_to "Exportar clientes", clients_path('csv'), target: :blank, class:"btn btn-primary" %>
+                <%= link_to "Exportar artigos", products_path('csv'), target: :blank, class:"btn btn-primary" %>
+      			  </center>
+            </div>
+  				  <center>
+  				    <a href="<%= edit_user_registration_path %>" class="btn btn-primary">Alterar password</a>
+  				  <center>  
+  				</div>
+  			</div>	
+  		</div> 
+  </div>
+</div>
+

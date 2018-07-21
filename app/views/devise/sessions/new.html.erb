@@ -1,0 +1,36 @@
+<div class="container-fluid py-3">
+  <div class="row">
+  	 <div class="loginmodal-container">
+  		<div class="loginmodal-container-2">
+  			<h1>Iniciar sessão em Gravomar</h1>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= devise_error_messages! %>
+      <div class="input-group input-group-sm mb-3">
+          <span class="input-group-addon" id="email">Email</span>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-md", id: "join_email", required: true, :aria => {:label => 'Email', :describedby => "email" }%>
+      </div>
+      <div class="input-group input-group-sm mb-3">
+          <span class="input-group-addon" id="password">Password</span>
+        <%= f.password_field :password, autocomplete: "off", class: "form-control form-control-md", id: "join_pword", required: true, :aria => {:label => 'Password', :describedby => "password" }%>
+      </div>
+       
+				<%= f.submit "Iniciar sessão", class: "login loginmodal-button loginmodal-submit" %>
+			    <div class="row mb-3">
+			      <div class="col-md-7">
+					<% if devise_mapping.rememberable? -%>
+                      <div class="field">
+                        <%= f.check_box :remember_me %> Manter sessão iniciada
+                      </div>
+                    <% end -%>    
+                  </div>
+                  <div class="col-md-5 text-right">
+                    <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                      <%= link_to "Não se recorda?", new_password_path(resource_name) %><br />
+                    <% end -%>
+                  </div>
+                </div>
+               <% end -%>
+  			  </div>
+  		</div> 
+    </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="container-fluid py-4">
+
+<h1>Clientes</h1>
+<!--<div class="row form-select">-->
+<!--  <div class="col-lg-2 offset-lg-5">-->
+<!--    <%#= form_tag(clients_path, method: :get) do %>-->
+<!--  <%#= select_tag "term", options_for_select([["Registrado", "registered"],["Não registrado", "non_registered"]]) %>-->
+<!--    <%#= submit_tag 'Filtro', class:"btn btn-primary" %>-->
+<!--<%# end %>-->
+<!--  </div>-->
+<!--</div>-->
+
+</div>
+<div class="container-fluid">
+    <%# User.where(admin: false).each do |cli| %>
+        <%#= cli.email %>
+    <%# end %>
+  <div class="table-responsive table-index">
+    <table class="table table-bordered bg-white">
+      <thead>
+        <tr>
+          <!--<th>#</th>-->
+          <th>Nome</th>
+          <th>Telefone</th>
+          <th>2º Telefone</th>
+          <th>Data de nascimento</th>
+          <th>Email</th>
+          <th>NIF</th>
+          <th>Status</th>
+          <th>Acções</th>
+          <th>Ficha</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @clients.each do |user| %>
+              <tr>
+                  <td> <%= user.name %> </td>
+                  <td> <%= user.phone_number %> </td>
+                  <td> <%= user.phone_number2 %> </td>
+                  <td> <%= user.dob.strftime("%d/%m/%Y") if user.dob.present?  %> </td>
+                  <td> <%= user.email %> </td>
+                  <td> <%= user.vat %> </td>
+                   <td> <%= user.status.humanize=="Registered" ? "Registado":"" %> </td>
+                  <td> 
+                  <%= link_to "Registro?", client_path(user, client: {status: "registered"}), class:"btn btn-primary btn-sm", method: :put if user.non_registered? %>
+                       <%#= link_to "Cancelar o Registro?", client_path(user, client: {status: "non_registered"}), class:"btn btn-primary btn-sm", method: :put if user.registered? %>
+                  <%= link_to 'Remover cliente', user, method: :delete, class:"btn btn-warning btn-sm", data: { confirm: 'Deseja prosseguir?' } %></td>
+                  </td>
+                  <td><%= link_to 'Abrir', edit_client_path(user), class:"btn btn-primary btn-sm" %></td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+      <%= link_to 'Adicionar novo cliente', new_client_path, class:"btn btn-primary" %>
+    </div>

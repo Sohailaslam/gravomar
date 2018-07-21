@@ -1,0 +1,63 @@
+<div class="container-fluid py-3">
+  <div class="row">
+  	<div class="loginmodal-container">
+  		<div class="loginmodal-container-2">
+  		  <h1>Outros Serviços</h1>
+        
+        <div class="table-responsive">
+          <table class="table table-bordered bg-white">
+            <tbody>
+              <tr>
+                <th>Nome</th>
+                <td><%= @job.name %></td>
+              </tr>
+              <tr>
+                <th>Telefone</th>
+                <td><%= @job.phone %></td>
+              </tr>
+              <tr>
+                <th>Material</th>
+                <td><%= @job.material %></td>
+              </tr>
+              <tr>
+                <th>Data de Entrega</th>
+                <td><%= @job.delivery_date %></td>
+              </tr>
+              <tr>
+                <th>Quantidade</th>
+                <td><%= @job.quantity %></td>
+              </tr>
+              <tr>
+                <th>Custo</th>
+               <td>&euro; <%= @job.cost %></td>
+              </tr>
+              <tr>
+                <th>Descrição</th>
+                <td><%= @job.description %></td>
+              </tr>
+              
+              
+            </tbody>
+          
+          </table>
+        </div>
+
+        <center>
+       <%= link_to 'Editar', edit_job_path(@job), class: "btn btn-primary" %> |
+       <%= link_to 'Voltar', jobs_path, class: "btn btn-primary" %>
+        </center>
+      </div>
+    </div>
+  </div>
+</div>  
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,21 @@
+<h2>Change your password</h2>
+
+<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+  <%= devise_error_messages! %>
+  <%= f.hidden_field :reset_password_token %>
+  <div class="input-group input-group-sm mb-3">
+    <span class="input-group-addon" id="Npassword">Novo Password</span>
+     <%= f.password_field :password, autofocus: true, autocomplete: "off", class:"form-control form-control-md", :aria => {:label => 'Npassword', :describedby => "Npassword" }%>
+  </div>
+  <div class="input-group input-group-sm mb-3">
+    <span class="input-group-addon" id="Cpassword">Conform password</span>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control form-control-md", :aria => {:label => 'Cpassword', :describedby => "Cpassword" }%>
+  </div>
+    
+
+  <div class="actions">
+    <%= f.submit "Change my password" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

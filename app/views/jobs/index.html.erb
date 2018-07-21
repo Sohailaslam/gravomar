@@ -1,0 +1,38 @@
+
+<div class="container-fluid py-4">
+  <h1>Outros serviços</h1>
+<div class="table-responsive table-index">
+<table class="table table-bordered bg-white dataTable no-footer">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Telefone</th>
+      <th>Material</th>
+      <th>Data de entrega</th>
+      <th>Quantidade</th>
+      <th>Custo</th>
+      <th>Descrição</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jobs.each do |job| %>
+      <tr>
+        <td><%= job.name %></td>
+        <td><%= job.phone %></td>
+        <td><%= job.material %></td>
+        <td><%= job.delivery_date %></td>
+        <td><%= job.quantity %></td>
+        <td><%= job.cost %></td>
+        <td><%= job.description %></td>
+        <td><%= link_to 'Consultar', job, class: "btn btn-primary btn-sm" %>
+        <%= link_to 'Editar', edit_job_path(job), class: "btn btn-primary btn-sm" %>
+        <%= link_to 'Apagar', job, class: "btn btn-warning btn-sm", method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<%= link_to 'Novo Emprego', new_job_path, class: "btn btn-primary mt-2" %>
+</div>
